@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=block");
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+}
+
+@layer base {
+  :root, .theme-light {
+    --background: #fcfcfc;
+    --foreground: #121212;
+    --muted: #f3f4f6;
+    --muted-foreground: #6b7280;
+    --card: #ffffff;
+    --card-foreground: #121212;
+    --border: #e5e7eb;
+    --primary: #121212;
+    --primary-foreground: #ffffff;
+    --secondary: #f3f4f6;
+    --secondary-foreground: #1f2937;
+    --accent: #f3f4f6;
+    --accent-foreground: #1f2937;
+  }
+
+  .theme-night {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --muted: #18181b;
+    --muted-foreground: #a1a1aa;
+    --card: #0c0c0e;
+    --card-foreground: #fafafa;
+    --border: #27272a;
+    --primary: #fafafa;
+    --primary-foreground: #09090b;
+    --secondary: #27272a;
+    --secondary-foreground: #fafafa;
+    --accent: #27272a;
+    --accent-foreground: #fafafa;
+  }
+
+  .theme-skyblue {
+    --background: #f0f9ff;
+    --foreground: #0c4a6e;
+    --muted: #e0f2fe;
+    --muted-foreground: #0284c7;
+    --card: #ffffff;
+    --card-foreground: #0c4a6e;
+    --border: #bae6fd;
+    --primary: #0284c7;
+    --primary-foreground: #ffffff;
+    --secondary: #e0f2fe;
+    --secondary-foreground: #0c4a6e;
+    --accent: #e0f2fe;
+    --accent-foreground: #0c4a6e;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    font-family: "Space Grotesk" !important;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  .prose pre[data-language] {
+    position: relative;
+    padding-top: 2.25rem;
+  }
+
+  .prose pre[data-language]::before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+}
