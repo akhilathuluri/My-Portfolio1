@@ -5,6 +5,8 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { portfolioData } from '@/lib/data';
 import { getSiteUrl, seoDefaults } from '@/lib/seo';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const siteUrl = getSiteUrl();
 
@@ -51,6 +53,9 @@ export const metadata: Metadata = {
     types: {
       'application/rss+xml': `${siteUrl}/rss.xml`,
     },
+  },
+  verification: {
+    google: '6OjjQTH2q4WA7KPU2r1XwKXRPuI5BqM_9cBjHZ4ZXcY',
   },
   robots: {
     index: true,
@@ -109,6 +114,8 @@ export default function RootLayout({
           </main>
           <Footer />
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
