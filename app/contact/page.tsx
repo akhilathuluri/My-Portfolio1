@@ -1,7 +1,8 @@
 import { portfolioData } from '@/lib/data';
 import PageTransition from '@/components/page-transition';
-import { Mail, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import type { Metadata } from 'next';
+import ContactForm from '@/components/contact-form';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -56,41 +57,7 @@ export default function Contact() {
 
         <div className="bg-card border border-border rounded-3xl p-8 shadow-sm">
           <h2 className="text-2xl font-bold mb-6">Send a message</h2>
-          <form className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
-                placeholder="John Doe"
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
-                placeholder="john@example.com"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">Message</label>
-              <textarea 
-                id="message" 
-                rows={5}
-                className="w-full px-4 py-3 bg-background border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow resize-none"
-                placeholder="How can I help you?"
-              />
-            </div>
-            <button 
-              type="button"
-              className="w-full py-4 bg-foreground text-background rounded-xl font-medium hover:bg-foreground/90 transition-colors flex items-center justify-center gap-2 mt-4"
-            >
-              Send Message <Send size={18} />
-            </button>
-          </form>
+          <ContactForm />
         </div>
       </div>
     </PageTransition>
