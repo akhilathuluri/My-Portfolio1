@@ -1,4 +1,4 @@
-import PageTransition from '@/components/page-transition'; 
+import PageTransition from '@/components/page-transition';
 import ScrambleText from '@/components/scramble-text';
 import SocialIcons from '@/components/social-icons';
 import type { Metadata } from 'next';
@@ -8,7 +8,8 @@ const homeSocialLinks = {
   github: portfolioData.personal.socials.github,
   linkedin: portfolioData.personal.socials.linkedin,
   twitter: portfolioData.personal.socials.twitter,
-  youtube: 'https://youtube.com',
+  youtube: 'https://www.youtube.com/@AkhilTechChannel',
+  resume: 'https://qmxpdckcbagzkqufpbkh.supabase.co/storage/v1/object/public/portfolio/items/Athuluri_Akhil_Resume.pdf',
 };
 
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export default function Home() {
     <PageTransition className="px-6 max-w-6xl mx-auto w-full flex items-center justify-center">
       {/* Hero Section */}
       <section className="w-full flex items-center justify-center relative pt-10 md:pt-16">
-        
+
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
         <div className="absolute bottom-0 left-10 w-48 h-48 bg-accent/50 rounded-full blur-2xl -z-10" />

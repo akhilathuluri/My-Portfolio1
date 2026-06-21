@@ -1,10 +1,11 @@
-import { Github, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Github, Linkedin, Twitter, Youtube, FileText } from "lucide-react";
 
 type SocialIconLinks = {
   github: string;
   linkedin: string;
   twitter: string;
   youtube: string;
+  resume?: string;
 };
 
 type SocialIconsProps = {
@@ -19,6 +20,9 @@ export default function SocialIcons({ links, className }: SocialIconsProps) {
     { href: links.twitter, label: "X (Twitter)", Icon: Twitter },
     { href: links.youtube, label: "YouTube", Icon: Youtube },
   ];
+  if (links.resume) {
+    items.push({ href: links.resume, label: "Download Resume", Icon: FileText });
+  }
 
   return (
     <nav aria-label="Social links" className={className}>

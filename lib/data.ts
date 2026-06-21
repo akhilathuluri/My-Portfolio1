@@ -4,13 +4,13 @@ export const portfolioData = {
     role: "Software Engineer",
     shortBio:
       "Computer Science graduate specializing in building scalable, high-performance applications with a strong focus on clean architecture, security, and user experience.",
-    email: "akhil.builds@proton.me",
+    email: "8309889800a@gmail.com",
     location: "Hyderabad, IN",
     availability: "Open to new opportunities",
     socials: {
       github: "https://github.com/akhilathuluri",
       linkedin: "https://linkedin.com/in/athuluriakhil",
-      twitter: "https://twitter.com",
+      twitter: "https://x.com/athuluriakhil1",
     },
   },
 
