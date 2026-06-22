@@ -9,6 +9,21 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      ai_context: {
+        Row: {
+          id: number;
+          content: string;
+        };
+        Insert: {
+          id?: number;
+          content: string;
+        };
+        Update: {
+          id?: number;
+          content?: string;
+        };
+        Relationships: [];
+      };
       portfolio_sections: {
         Row: {
           section_key: string;
