@@ -1,4 +1,7 @@
+"use client";
+
 import { Github, Linkedin, Twitter, Youtube, FileText } from "lucide-react";
+import { useCursor } from "./cursor-context";
 
 type SocialIconLinks = {
   github: string;
@@ -14,6 +17,8 @@ type SocialIconsProps = {
 };
 
 export default function SocialIcons({ links, className }: SocialIconsProps) {
+  const { setCursorState } = useCursor();
+
   const items = [
     { href: links.github, label: "GitHub", Icon: Github },
     { href: links.linkedin, label: "LinkedIn", Icon: Linkedin },
@@ -36,6 +41,8 @@ export default function SocialIcons({ links, className }: SocialIconsProps) {
               aria-label={label}
               title={label}
               className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:text-foreground hover:border-foreground/40"
+              onMouseEnter={() => setCursorState({ variant: "link" })}
+              onMouseLeave={() => setCursorState({ variant: "default" })}
             >
               <Icon size={18} />
             </a>

@@ -8,6 +8,8 @@ import { getSiteUrl, seoDefaults } from '@/lib/seo';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import ChatWidget from '@/components/chat-widget';
+import { CursorProvider } from '@/components/cursor-context';
+import CustomCursor from '@/components/custom-cursor';
 
 const siteUrl = getSiteUrl();
 
@@ -108,14 +110,17 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <ThemeProvider>
-          <Header />
-          <main className="flex-grow flex">
-            {children}
-          </main>
-          <Footer />
-          <ChatWidget />
-        </ThemeProvider>
+        <CursorProvider>
+          <CustomCursor />
+          <ThemeProvider>
+            <Header />
+            <main className="flex-grow flex">
+              {children}
+            </main>
+            <Footer />
+            <ChatWidget />
+          </ThemeProvider>
+        </CursorProvider>
         <Analytics />
         <SpeedInsights />
       </body>
