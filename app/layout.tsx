@@ -7,6 +7,7 @@ import { portfolioData } from '@/lib/data';
 import { getSiteUrl, seoDefaults } from '@/lib/seo';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import ChatWidget from '@/components/chat-widget';
 
 const siteUrl = getSiteUrl();
 
@@ -113,6 +114,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <ChatWidget />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
