@@ -1,4 +1,3 @@
-import { unstable_noStore as noStore } from "next/cache";
 import { portfolioData } from "@/lib/data";
 import {
   editableSectionKeys,
@@ -28,7 +27,6 @@ export function getDefaultEditableSections(): EditableSections {
 }
 
 export async function getPortfolioData(): Promise<PortfolioData> {
-  noStore();
 
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
     return deepClone(portfolioData);
