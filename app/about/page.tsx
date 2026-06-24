@@ -1,5 +1,6 @@
 import { getPortfolioData } from '@/lib/portfolio-content';
 import PageTransition from '@/components/page-transition';
+import GithubCalendar from '@/components/github-calendar';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -40,6 +41,9 @@ export default async function About() {
             </div>
           ))}
         </div>
+
+        {/* GitHub Calendar */}
+        <GithubCalendar token={process.env.GITHUB_TOKEN || ""} />
 
         {/* Timeline */}
         <div>
