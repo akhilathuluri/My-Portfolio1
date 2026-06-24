@@ -63,7 +63,7 @@ export default function Header() {
             : 'bg-transparent border-b border-transparent py-4'
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="font-mono font-bold text-lg tracking-tighter flex items-center gap-2">
           <div className="w-6 h-6 rounded-sm bg-foreground flex items-center justify-center">
             <span className="text-background text-xs">AA</span>

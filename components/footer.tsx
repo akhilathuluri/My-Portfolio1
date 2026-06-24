@@ -8,7 +8,7 @@ export default function Footer() {
   const { setCursorState } = useCursor();
   return (
     <footer className="border-t border-border mt-20 py-10 bg-background">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="flex items-center gap-2">
           <div className="w-5 h-5 rounded-sm bg-foreground flex items-center justify-center">
             <span className="text-background text-[10px] font-mono">AA</span>

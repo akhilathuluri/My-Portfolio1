@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <PageTransition className="px-6 max-w-6xl mx-auto w-full flex items-center justify-center">
+    <PageTransition className="px-6 max-w-7xl mx-auto w-full flex items-center justify-center">
       {/* Hero Section */}
       <section className="w-full flex items-center justify-center relative pt-10 md:pt-16">
 
