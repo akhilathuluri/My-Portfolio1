@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-type Theme = "light" | "night" | "skyblue";
+type Theme = "light" | "night" | "skyblue" | "forest" | "rose" | "sunset" | "lavender" | "coffee" | "ocean";
 
 interface ThemeProviderProps {
   children: React.ReactNode;
@@ -38,7 +38,7 @@ export function ThemeProvider({
   React.useEffect(() => {
     if (!mounted) return;
     const root = window.document.documentElement;
-    root.classList.remove("theme-light", "theme-night", "theme-skyblue");
+    root.classList.remove("theme-light", "theme-night", "theme-skyblue", "theme-forest", "theme-rose", "theme-sunset", "theme-lavender", "theme-coffee", "theme-ocean");
     root.classList.add(`theme-${theme}`);
     localStorage.setItem("theme", theme);
   }, [theme, mounted]);

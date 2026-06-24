@@ -72,6 +72,102 @@
     --accent: #e0f2fe;
     --accent-foreground: #0c4a6e;
   }
+
+  .theme-forest {
+    --background: #052e16;
+    --foreground: #ecfdf5;
+    --muted: #064e3b;
+    --muted-foreground: #6ee7b7;
+    --card: #022c22;
+    --card-foreground: #ecfdf5;
+    --border: #065f46;
+    --primary: #10b981;
+    --primary-foreground: #022c22;
+    --secondary: #064e3b;
+    --secondary-foreground: #ecfdf5;
+    --accent: #064e3b;
+    --accent-foreground: #ecfdf5;
+  }
+
+  .theme-rose {
+    --background: #fff1f2;
+    --foreground: #881337;
+    --muted: #ffe4e6;
+    --muted-foreground: #e11d48;
+    --card: #ffffff;
+    --card-foreground: #881337;
+    --border: #fecdd3;
+    --primary: #e11d48;
+    --primary-foreground: #ffffff;
+    --secondary: #ffe4e6;
+    --secondary-foreground: #881337;
+    --accent: #ffe4e6;
+    --accent-foreground: #881337;
+  }
+
+  .theme-sunset {
+    --background: #431407;
+    --foreground: #fff7ed;
+    --muted: #7c2d12;
+    --muted-foreground: #fdba74;
+    --card: #2a0c04;
+    --card-foreground: #fff7ed;
+    --border: #9a3412;
+    --primary: #f97316;
+    --primary-foreground: #431407;
+    --secondary: #7c2d12;
+    --secondary-foreground: #fff7ed;
+    --accent: #7c2d12;
+    --accent-foreground: #fff7ed;
+  }
+
+  .theme-lavender {
+    --background: #faf5ff;
+    --foreground: #4a044e;
+    --muted: #f3e8ff;
+    --muted-foreground: #c026d3;
+    --card: #ffffff;
+    --card-foreground: #4a044e;
+    --border: #e9d5ff;
+    --primary: #c026d3;
+    --primary-foreground: #ffffff;
+    --secondary: #f3e8ff;
+    --secondary-foreground: #4a044e;
+    --accent: #f3e8ff;
+    --accent-foreground: #4a044e;
+  }
+
+  .theme-coffee {
+    --background: #292524;
+    --foreground: #fafaf9;
+    --muted: #44403c;
+    --muted-foreground: #d6d3d1;
+    --card: #1c1917;
+    --card-foreground: #fafaf9;
+    --border: #57534e;
+    --primary: #d6d3d1;
+    --primary-foreground: #1c1917;
+    --secondary: #44403c;
+    --secondary-foreground: #fafaf9;
+    --accent: #44403c;
+    --accent-foreground: #fafaf9;
+  }
+
+  .theme-ocean {
+    --background: #083344;
+    --foreground: #ecfeff;
+    --muted: #164e63;
+    --muted-foreground: #67e8f9;
+    --card: #041f2a;
+    --card-foreground: #ecfeff;
+    --border: #155e75;
+    --primary: #06b6d4;
+    --primary-foreground: #083344;
+    --secondary: #164e63;
+    --secondary-foreground: #ecfeff;
+    --accent: #164e63;
+    --accent-foreground: #ecfeff;
+  }
 }
 
 @layer base {

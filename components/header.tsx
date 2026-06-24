@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from './theme-provider';
 import { useCursor } from './cursor-context';
-import { Moon, Sun, Cloud, Menu, X } from 'lucide-react';
+import { Moon, Sun, Cloud, Menu, X, Leaf, Heart, Sunset, Flower, Coffee, Droplets } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const navItems = [
@@ -49,10 +49,25 @@ export default function Header() {
   const cycleTheme = () => {
     if (theme === 'light') setTheme('night');
     else if (theme === 'night') setTheme('skyblue');
+    else if (theme === 'skyblue') setTheme('forest');
+    else if (theme === 'forest') setTheme('rose');
+    else if (theme === 'rose') setTheme('sunset');
+    else if (theme === 'sunset') setTheme('lavender');
+    else if (theme === 'lavender') setTheme('coffee');
+    else if (theme === 'coffee') setTheme('ocean');
     else setTheme('light');
   };
 
-  const ThemeIcon = theme === 'light' ? Sun : theme === 'night' ? Moon : Cloud;
+  const ThemeIcon = 
+    theme === 'light' ? Sun : 
+    theme === 'night' ? Moon : 
+    theme === 'skyblue' ? Cloud :
+    theme === 'forest' ? Leaf :
+    theme === 'rose' ? Heart :
+    theme === 'sunset' ? Sunset :
+    theme === 'lavender' ? Flower :
+    theme === 'coffee' ? Coffee :
+    Droplets;
 
   return (
     <>
