@@ -126,7 +126,7 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[600px] px-4 sm:px-0 flex flex-col justify-end pointer-events-none">
+    <div className="fixed bottom-12 left-1/2 -translate-x-1/2 z-50 w-full max-w-[600px] px-4 sm:px-0 flex flex-col justify-end pointer-events-none">
       
       {/* Chat Window */}
       <AnimatePresence>
