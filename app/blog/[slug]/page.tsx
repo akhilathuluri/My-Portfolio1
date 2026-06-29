@@ -6,6 +6,7 @@ import PageTransition from "@/components/page-transition";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { cache } from "react";
+import { AiSummary } from "@/components/blog/ai-summary";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -60,7 +61,7 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   return (
-    <PageTransition className="pt-32 pb-24 px-6 md:px-12 xl:px-24 w-full mx-auto max-w-5xl">
+    <PageTransition className="pt-32 pb-24 px-6 md:px-12 xl:px-24 w-full mx-auto max-w-7xl">
       <Link
         href="/blog"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-12"
@@ -68,30 +69,42 @@ export default async function BlogPostPage({ params }: Props) {
         <ArrowLeft size={16} /> Back to all articles
       </Link>
 
-      <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
-          {blog.title}
-        </h1>
-        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground font-mono">
-          <div className="flex items-center gap-1.5">
-            <Calendar size={14} />
-            {new Date(blog.created_at).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </div>
-          {blog.read_time && (
-            <div className="flex items-center gap-1.5">
-              <Clock size={14} />
-              {blog.read_time}
+      <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+        {/* Main Content (Left) */}
+        <div className="lg:col-span-8 xl:col-span-8">
+          <header className="mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 leading-tight">
+              {blog.title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground font-mono">
+              <div className="flex items-center gap-1.5">
+                <Calendar size={14} />
+                {new Date(blog.created_at).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </div>
+              {blog.read_time && (
+                <div className="flex items-center gap-1.5">
+                  <Clock size={14} />
+                  {blog.read_time}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </header>
+          </header>
 
-      <div className="prose prose-lg prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl max-w-none">
-        <ReactMarkdown>{blog.content}</ReactMarkdown>
+          <div className="prose prose-lg prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl max-w-none">
+            <ReactMarkdown>{blog.content}</ReactMarkdown>
+          </div>
+        </div>
+
+        {/* Sidebar (Right) */}
+        <div className="lg:col-span-4 xl:col-span-4">
+          <div className="sticky top-32">
+            <AiSummary title={blog.title} content={blog.content} />
+          </div>
+        </div>
       </div>
     </PageTransition>
   );

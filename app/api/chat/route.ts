@@ -1,36 +1,8 @@
 import { NextResponse } from 'next/server';
 import Groq from "groq-sdk";
 import { createClient } from "@supabase/supabase-js";
+import { checkStrictRateLimit } from "@/lib/rate-limit";
 
-// Simple in-memory rate limiting map (persists across dev reloads)
-const globalForRateLimit = globalThis as unknown as {
-  rateLimitMap: Map<string, { count: number; resetAt: number }> | undefined
-};
-
-const rateLimitMap = globalForRateLimit.rateLimitMap ?? new Map<string, { count: number; resetAt: number }>();
-
-if (process.env.NODE_ENV !== 'production') {
-  globalForRateLimit.rateLimitMap = rateLimitMap;
-}
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const windowMs = 24 * 60 * 60 * 1000; // 24 hours
-  const limit = 10;
-
-  const record = rateLimitMap.get(ip);
-  if (!record || now > record.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + windowMs });
-    return true;
-  }
-
-  if (record.count >= limit) {
-    return false;
-  }
-
-  record.count += 1;
-  return true;
-}
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
@@ -42,10 +14,13 @@ export async function POST(req: Request) {
     const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
 
     // Check rate limit (only if IP is known)
-    if (ip !== 'unknown' && !checkRateLimit(ip)) {
-      return NextResponse.json({
-        response: "You've reached the daily limit of 10 messages per day. Please come back tomorrow to ask more questions!"
-      }, { status: 429 });
+    if (ip !== 'unknown') {
+      const { allowed } = await checkStrictRateLimit(ip, 10);
+      if (!allowed) {
+        return NextResponse.json({
+          response: "You've reached the daily limit of 10 messages per day. Please come back tomorrow to ask more questions!"
+        }, { status: 429 });
+      }
     }
 
     const groqApiKey = process.env.GROQ_API_KEY;
