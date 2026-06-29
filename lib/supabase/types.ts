@@ -78,6 +78,24 @@ export type Database = {
         };
         Relationships: [];
       };
+      api_rate_limits: {
+        Row: {
+          ip_address: string;
+          usage_count: number;
+          reset_at: string;
+        };
+        Insert: {
+          ip_address: string;
+          usage_count?: number;
+          reset_at: string;
+        };
+        Update: {
+          ip_address?: string;
+          usage_count?: number;
+          reset_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;
