@@ -7,6 +7,7 @@ import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { cache } from "react";
 import { AiSummary } from "@/components/blog/ai-summary";
+import { getArticleJsonLd } from "@/lib/seo";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -61,7 +62,12 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   return (
-    <PageTransition className="pt-32 pb-24 px-6 md:px-12 xl:px-24 w-full mx-auto max-w-7xl">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(getArticleJsonLd(blog)) }}
+      />
+      <PageTransition className="pt-32 pb-24 px-6 md:px-12 xl:px-24 w-full mx-auto max-w-7xl">
       <Link
         href="/blog"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-12"
@@ -107,5 +113,6 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </div>
     </PageTransition>
+    </>
   );
 }

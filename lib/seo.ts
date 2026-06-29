@@ -85,3 +85,42 @@ export const seoDefaults = {
     "Athuluri Akhil",
   ],
 };
+
+export function getArticleJsonLd(blog: {
+  title: string;
+  excerpt?: string | null;
+  slug: string;
+  created_at: string;
+  updated_at: string;
+  cover_image?: string;
+}) {
+  const siteUrl = getSiteUrl();
+  const url = `${siteUrl}/blog/${blog.slug}`;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": url
+    },
+    "headline": blog.title,
+    "description": blog.excerpt || blog.title,
+    "image": blog.cover_image ? [`${siteUrl}${blog.cover_image}`] : [`${siteUrl}/opengraph-image`],
+    "datePublished": new Date(blog.created_at).toISOString(),
+    "dateModified": new Date(blog.updated_at || blog.created_at).toISOString(),
+    "author": {
+      "@type": "Person",
+      "name": portfolioData.personal.name,
+      "url": siteUrl
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": seoDefaults.siteName,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/icon.png`
+      }
+    }
+  };
+}
