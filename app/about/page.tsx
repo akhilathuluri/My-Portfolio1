@@ -21,7 +21,7 @@ export default async function About() {
   const portfolioData = await getPortfolioData();
 
   return (
-    <PageTransition className="pt-32 pb-16 px-6 max-w-4xl mx-auto">
+    <PageTransition className="pt-32 pb-16 px-6 w-full min-w-0 max-w-4xl mx-auto">
       <div className="space-y-16">
         {/* Header */}
         <div>

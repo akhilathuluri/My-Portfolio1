@@ -79,7 +79,7 @@ export default async function GithubCalendar({ token }: { token: string }) {
           </span>
         </div>
 
-        <div className="bg-card border border-border p-6 rounded-2xl shadow-sm overflow-x-auto">
+        <div className="w-full bg-card border border-border p-6 rounded-2xl shadow-sm overflow-x-auto">
           <div className="flex gap-[3px] min-w-max pb-2">
             {calendar.weeks.map((week: any, wIndex: number) => {
               const days = week.contributionDays;

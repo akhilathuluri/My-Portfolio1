@@ -20,7 +20,7 @@ export default async function Experience() {
   const portfolioData = await getPortfolioData();
 
   return (
-    <PageTransition className="pt-32 pb-16 px-6 max-w-4xl mx-auto">
+    <PageTransition className="pt-32 pb-16 px-6 w-full min-w-0 max-w-4xl mx-auto">
       <div className="mb-16">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Experience</h1>
         <p className="text-lg text-muted-foreground max-w-2xl">
