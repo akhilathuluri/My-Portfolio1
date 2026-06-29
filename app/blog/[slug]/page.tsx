@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import PageTransition from "@/components/page-transition";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { cache } from "react";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -12,7 +13,7 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-async function getBlogBySlug(slug: string) {
+const getBlogBySlug = cache(async (slug: string) => {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
   const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -25,7 +26,7 @@ async function getBlogBySlug(slug: string) {
 
   if (error || !blog) return null;
   return blog;
-}
+});
 
 export async function generateMetadata(
   { params }: Props,
@@ -89,7 +90,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </header>
 
-      <div className="prose prose-lg dark:prose-invert prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl max-w-none">
+      <div className="prose prose-lg prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl max-w-none">
         <ReactMarkdown>{blog.content}</ReactMarkdown>
       </div>
     </PageTransition>

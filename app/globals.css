@@ -183,6 +183,45 @@
     transition-duration: 300ms;
   }
 
+  .prose,
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6,
+  .prose p, .prose ul, .prose ol, .prose li,
+  .prose strong, .prose b, .prose i, .prose em,
+  .prose table, .prose tr, .prose td, .prose th {
+    color: var(--foreground) !important;
+  }
+
+  .prose a {
+    color: var(--primary) !important;
+  }
+
+  .prose blockquote {
+    color: var(--foreground) !important;
+    border-left-color: var(--border) !important;
+  }
+
+  .prose hr {
+    border-color: var(--border) !important;
+  }
+  
+  .prose pre {
+    background-color: var(--muted) !important;
+    color: var(--foreground) !important;
+  }
+
+  .prose code {
+    color: var(--primary) !important;
+    background-color: var(--muted) !important;
+    padding: 0.2em 0.4em !important;
+    border-radius: 0.25rem !important;
+  }
+  
+  .prose pre code {
+    background-color: transparent !important;
+    color: inherit !important;
+    padding: 0 !important;
+  }
+
   .prose pre[data-language] {
     position: relative;
     padding-top: 2.25rem;

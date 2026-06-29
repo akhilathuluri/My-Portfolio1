@@ -17,6 +17,14 @@ function generateSlug(title: string) {
     .replace(/(^-|-$)+/g, "");
 }
 
+function calculateReadTime(text: string): string {
+  if (!text.trim()) return "1 min read";
+  const wordsPerMinute = 200;
+  const words = text.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min read`;
+}
+
 export function BlogForm({ initialData, isEdit }: BlogFormProps) {
   const router = useRouter();
   const [isSaving, setIsSaving] = useState(false);
@@ -32,11 +40,17 @@ export function BlogForm({ initialData, isEdit }: BlogFormProps) {
   const handleChange = (field: string, value: any) => {
     setFormData((prev) => {
       const newData = { ...prev, [field]: value };
+      
       // Auto-generate slug if title changes and we haven't manually edited the slug
-      // Or just a simple implementation:
       if (field === "title" && !isEdit && !prev.slug) {
         newData.slug = generateSlug(value);
       }
+      
+      // Auto-calculate read time when content changes
+      if (field === "content") {
+        newData.read_time = calculateReadTime(value);
+      }
+      
       return newData;
     });
   };
@@ -111,11 +125,11 @@ export function BlogForm({ initialData, isEdit }: BlogFormProps) {
 
       <div className="grid md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <label className="text-sm font-medium">Read Time</label>
+          <label className="text-sm font-medium">Read Time (Auto-generated)</label>
           <input
+            readOnly
             value={formData.read_time}
-            onChange={(e) => handleChange("read_time", e.target.value)}
-            className="w-full rounded-xl border border-border bg-background px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/40"
+            className="w-full rounded-xl border border-border bg-muted/50 px-4 py-2 focus:outline-none text-muted-foreground cursor-not-allowed"
             placeholder="e.g. 5 min read"
           />
         </div>
