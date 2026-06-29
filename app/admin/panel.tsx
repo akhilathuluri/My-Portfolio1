@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
+import Link from "next/link";
 import PageTransition from "@/components/page-transition";
 import { createBrowserSupabaseClient } from "@/lib/supabase/client";
 import { type EditableSectionKey, type EditableSections } from "@/lib/portfolio-sections";
@@ -787,55 +788,19 @@ export default function AdminPanel() {
         </section>
 
         <section className="bg-card border border-border rounded-2xl p-6 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-2xl font-semibold">Blog</h2>
-            <button
-              type="button"
-              onClick={() => void handleSave("blog")}
-              className="px-4 py-2 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-colors"
+          <div className="flex flex-col items-center justify-center p-12 bg-card border border-border rounded-xl text-center space-y-4">
+            <h2 className="text-2xl font-semibold">Blog Management Moved</h2>
+            <p className="text-muted-foreground max-w-md">
+              The blog system has been upgraded to support full markdown editing and native article rendering. 
+              Click below to manage your blogs.
+            </p>
+            <Link
+              href="/admin/blogs"
+              className="px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors"
             >
-              Save Blog
-            </button>
+              Open Blog Manager
+            </Link>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-3">
-            <input
-              value={sections.blog[0]?.date ?? ""}
-              onChange={(event) => updateBlogField("date", event.target.value)}
-              placeholder="Date"
-              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-            />
-            <input
-              value={sections.blog[0]?.readTime ?? ""}
-              onChange={(event) => updateBlogField("readTime", event.target.value)}
-              placeholder="Read Time"
-              className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-            />
-          </div>
-
-          <input
-            value={sections.blog[0]?.title ?? ""}
-            onChange={(event) => updateBlogField("title", event.target.value)}
-            placeholder="Title"
-            className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-          />
-
-          <textarea
-            rows={3}
-            value={sections.blog[0]?.excerpt ?? ""}
-            onChange={(event) => updateBlogField("excerpt", event.target.value)}
-            placeholder="Excerpt"
-            className="w-full rounded-xl border border-border bg-background p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-          />
-
-          <input
-            value={sections.blog[0]?.link ?? ""}
-            onChange={(event) => updateBlogField("link", event.target.value)}
-            placeholder="Article Link (opens in new tab)"
-            className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
-          />
-
-          {saveState.blog ? <p className="text-sm text-muted-foreground">{saveState.blog}</p> : null}
         </section>
       </div>
     </PageTransition>
