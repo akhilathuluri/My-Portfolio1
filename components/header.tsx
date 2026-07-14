@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from './theme-provider';
-import { useCursor } from './cursor-context';
 import { Moon, Sun, Cloud, Menu, X, Leaf, Heart, Sunset, Flower, Coffee, Droplets } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
@@ -23,7 +22,6 @@ export default function Header() {
   const { theme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { setCursorState } = useCursor();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,8 +95,6 @@ export default function Header() {
                 className={`relative px-4 py-2 text-sm font-medium transition-colors ${
                   isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
                 }`}
-                onMouseEnter={() => setCursorState({ variant: 'link' })}
-                onMouseLeave={() => setCursorState({ variant: 'default' })}
               >
                 {item.label}
                 {isActive && (
@@ -117,8 +113,6 @@ export default function Header() {
             onClick={cycleTheme}
             className="ml-4 p-2 rounded-full hover:bg-muted transition-colors"
             aria-label="Toggle theme"
-            onMouseEnter={() => setCursorState({ variant: 'link' })}
-            onMouseLeave={() => setCursorState({ variant: 'default' })}
           >
             <ThemeIcon size={18} className="text-foreground" />
           </button>

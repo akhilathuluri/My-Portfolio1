@@ -8,8 +8,8 @@ import { getSiteUrl, seoDefaults } from '@/lib/seo';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import ChatWidget from '@/components/chat-widget';
-import { CursorProvider } from '@/components/cursor-context';
-import CustomCursor from '@/components/custom-cursor';
+import { getPortfolioData } from '@/lib/portfolio-content';
+import TerminalWidget from '@/components/terminal-widget';
 
 const siteUrl = getSiteUrl();
 
@@ -98,11 +98,13 @@ export const metadata: Metadata = {
   category: 'technology',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const fetchedPortfolioData = await getPortfolioData();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col">
@@ -110,17 +112,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <CursorProvider>
-          <CustomCursor />
-          <ThemeProvider>
-            <Header />
-            <main className="flex-grow flex">
-              {children}
-            </main>
-            <Footer />
-            <ChatWidget />
-          </ThemeProvider>
-        </CursorProvider>
+        <ThemeProvider>
+          <Header />
+          <main className="flex-grow flex">
+            {children}
+          </main>
+          <Footer />
+          <ChatWidget />
+          <TerminalWidget data={fetchedPortfolioData} />
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

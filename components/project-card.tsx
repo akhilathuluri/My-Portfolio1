@@ -2,8 +2,6 @@
 
 import React from 'react';
 import { Github, ExternalLink, Folder } from 'lucide-react';
-import { useCursor } from './cursor-context';
-
 interface Project {
   name: string;
   description: string;
@@ -13,13 +11,10 @@ interface Project {
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
-  const { setCursorState } = useCursor();
 
   return (
     <div 
-      className="group flex flex-col justify-between bg-card border border-border rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-none"
-      onMouseEnter={() => setCursorState({ variant: 'project', text: 'View Project' })}
-      onMouseLeave={() => setCursorState({ variant: 'default' })}
+      className="group flex flex-col justify-between bg-card border border-border rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
       onClick={() => window.open(project.link, '_blank')}
     >
       <div>
@@ -33,14 +28,6 @@ export default function ProjectCard({ project }: { project: Project }) {
               target="_blank" 
               rel="noreferrer" 
               className="text-muted-foreground hover:text-foreground transition-colors p-2"
-              onMouseEnter={(e) => {
-                e.stopPropagation();
-                setCursorState({ variant: 'link' });
-              }}
-              onMouseLeave={(e) => {
-                e.stopPropagation();
-                setCursorState({ variant: 'project', text: 'View Project' });
-              }}
               onClick={(e) => e.stopPropagation()}
             >
               <Github size={20} />
@@ -50,14 +37,6 @@ export default function ProjectCard({ project }: { project: Project }) {
               target="_blank" 
               rel="noreferrer" 
               className="text-muted-foreground hover:text-foreground transition-colors p-2"
-              onMouseEnter={(e) => {
-                e.stopPropagation();
-                setCursorState({ variant: 'link' });
-              }}
-              onMouseLeave={(e) => {
-                e.stopPropagation();
-                setCursorState({ variant: 'project', text: 'View Project' });
-              }}
               onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink size={20} />
