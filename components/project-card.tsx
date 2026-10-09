@@ -12,10 +12,18 @@ interface Project {
 
 export default function ProjectCard({ project }: { project: Project }) {
 
+  const isInternal = project.link.startsWith('/');
+
   return (
     <div 
-      className="group flex flex-col justify-between bg-card border border-border rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-      onClick={() => window.open(project.link, '_blank')}
+      className="group flex flex-col justify-between bg-card border border-border rounded-2xl p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+      onClick={() => {
+        if (isInternal) {
+          window.location.href = project.link;
+        } else {
+          window.open(project.link, '_blank');
+        }
+      }}
     >
       <div>
         <div className="flex justify-between items-start mb-6">
@@ -23,21 +31,25 @@ export default function ProjectCard({ project }: { project: Project }) {
             <Folder size={24} />
           </div>
           <div className="flex gap-3 relative z-10">
+            {!isInternal && (
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="text-muted-foreground hover:text-foreground transition-colors p-2"
+                onClick={(e) => e.stopPropagation()}
+                aria-label="View repository"
+              >
+                <Github size={20} />
+              </a>
+            )}
             <a 
               href={project.link} 
-              target="_blank" 
-              rel="noreferrer" 
+              target={isInternal ? undefined : "_blank"} 
+              rel={isInternal ? undefined : "noreferrer"} 
               className="text-muted-foreground hover:text-foreground transition-colors p-2"
               onClick={(e) => e.stopPropagation()}
-            >
-              <Github size={20} />
-            </a>
-            <a 
-              href={project.link} 
-              target="_blank" 
-              rel="noreferrer" 
-              className="text-muted-foreground hover:text-foreground transition-colors p-2"
-              onClick={(e) => e.stopPropagation()}
+              aria-label="Open project"
             >
               <ExternalLink size={20} />
             </a>

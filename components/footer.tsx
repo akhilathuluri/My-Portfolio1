@@ -1,8 +1,14 @@
 "use client";
 
+import { usePathname } from 'next/navigation';
 import { portfolioData } from '@/lib/data';
 import { Github, Linkedin, Twitter } from 'lucide-react';
+
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith('/tare')) {
+    return null;
+  }
   return (
     <footer className="border-t border-border mt-20 py-10 bg-background">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">

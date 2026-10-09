@@ -67,6 +67,10 @@ export default function Header() {
     theme === 'coffee' ? Coffee :
     Droplets;
 
+  if (pathname?.startsWith('/tare')) {
+    return null;
+  }
+
   return (
     <>
       <header

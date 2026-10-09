@@ -48,6 +48,14 @@ export async function getPortfolioData(): Promise<PortfolioData> {
 
     for (const row of data) {
       if (editableSectionKeys.includes(row.section_key)) {
+        if (row.section_key === 'projects' && Array.isArray(row.content)) {
+          const hasTare = (row.content as any[]).some((p: any) => p?.name === 'Tare' || p?.link === '/tare');
+          if (!hasTare) {
+            const tareProject = portfolioData.projects.find((p: any) => p.name === 'Tare');
+            (merged.projects as any) = tareProject ? [tareProject, ...row.content] : row.content;
+            continue;
+          }
+        }
         (merged[row.section_key] as unknown) = row.content;
       }
     }

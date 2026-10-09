@@ -97,6 +97,15 @@ export const portfolioData = {
 
   projects: [
     {
+      name: "Tare",
+      description:
+        "A private, local-first personal financial management application designed to track spending, budgets, and net cash flow without cloud servers or telemetry.",
+      tags: ["Local-First", "Finance", "Privacy", "Offline"],
+      impact:
+        "100% on-device data sovereignty with atomic .tare backups and real-time ledger analytics.",
+      link: "/tare",
+    },
+    {
       name: "AWS 3-Tier Architecture Deployment",
       description:
         "Designed and deployed a secure 3-tier web application using AWS services including EC2, ALB, Auto Scaling, and RDS.",

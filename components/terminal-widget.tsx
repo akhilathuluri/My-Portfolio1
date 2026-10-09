@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, useDragControls } from 'motion/react';
 import { Terminal, X, Minus, Square } from 'lucide-react';
 import { type PortfolioData } from '@/lib/portfolio-sections';
@@ -277,6 +278,11 @@ export default function TerminalWidget({ data }: TerminalWidgetProps) {
   const handleTerminalClick = () => {
     inputRef.current?.focus();
   };
+
+  const pathname = usePathname();
+  if (pathname?.startsWith('/tare')) {
+    return null;
+  }
 
   return (
     <>

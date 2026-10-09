@@ -7,11 +7,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   // 1. Define static routes
-  const staticRoutes = ["", "/about", "/expertise", "/experience", "/projects", "/blog", "/contact"].map((route, index) => ({
+  const staticRoutes = ["", "/tare", "/tare/privacy-policy", "/about", "/expertise", "/experience", "/projects", "/blog", "/contact"].map((route, index) => ({
     url: `${siteUrl}${route}`,
     lastModified: now,
-    changeFrequency: (route === "" ? "weekly" : "monthly") as any,
-    priority: index === 0 ? 1 : 0.8,
+    changeFrequency: (route === "" || route === "/tare" || route === "/tare/privacy-policy" ? "weekly" : "monthly") as any,
+    priority: route === "" ? 1 : route.startsWith("/tare") ? 0.9 : 0.8,
   }));
 
   // 2. Fetch dynamic blog routes

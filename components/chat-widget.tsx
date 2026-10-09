@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { Send, X, Loader2, User, Bot, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
@@ -125,6 +126,11 @@ export default function ChatWidget() {
     }
   };
 
+  const pathname = usePathname();
+  if (pathname?.startsWith('/tare')) {
+    return null;
+  }
+
   return (
     <div className="fixed bottom-12 left-1/2 -translate-x-1/2 z-50 w-full max-w-[600px] px-4 sm:px-0 flex flex-col justify-end pointer-events-none">
       
@@ -145,7 +151,7 @@ export default function ChatWidget() {
                   <Bot size={18} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm">Akhil's AI Assistant</h3>
+                  <h3 className="font-semibold text-sm">Akhil&apos;s AI Assistant</h3>
                   <div className="flex items-center gap-1.5">
                     <span className={`w-1.5 h-1.5 rounded-full ${localSession ? 'bg-blue-500' : 'bg-green-500'}`}></span>
                     <span className="text-xs text-muted-foreground">
