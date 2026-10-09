@@ -41,7 +41,7 @@ export async function POST(req: Request) {
 
     const completion = await groq.chat.completions.create({
       messages: [systemPrompt, userPrompt as any],
-      model: "llama-3.1-8b-instant",
+      model: "openai/gpt-oss-20b",
     });
 
     const summary = completion.choices[0]?.message?.content || "I couldn't generate a summary right now, but this is a great read!";

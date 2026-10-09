@@ -60,7 +60,7 @@ ${portfolioContext}`
 
     const completion = await groq.chat.completions.create({
       messages: [systemPrompt, ...validMessages],
-      model: "llama-3.1-8b-instant",
+      model: "openai/gpt-oss-20b",
     });
 
     const responseContent = completion.choices[0]?.message?.content || "I'm sorry, I couldn't generate a response.";
